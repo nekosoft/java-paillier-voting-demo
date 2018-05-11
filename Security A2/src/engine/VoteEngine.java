@@ -12,12 +12,12 @@ public class VoteEngine {
 		int lambdaTest;
 		
 		gcdTest = PrivKeyGeneration.gcdCalc(58, 96);
-		// lcmTest = PrivKeyGeneration.lcmCalc(58, 96, gcdTest);
-//		lambdaTest = PrivKeyGeneration.lambdaCalc(59, 97);
+		 lcmTest = PrivKeyGeneration.lcmCalc(58, 96, gcdTest);
+		lambdaTest = PrivKeyGeneration.lambdaCalc(59, 97);
 		
-		System.out.printf("gcd: %d", gcdTest);
-		// System.out.printf("lcm: %d", lcmTest);
-//		System.out.printf("\u03bb: %d", lambdaTest);
+		System.out.printf("gcd: %d\n", gcdTest);
+		 System.out.printf("lcm: %d\n", lcmTest);
+		System.out.printf("\u03bb: %d\n", lambdaTest);
 	}
 
 }

@@ -33,7 +33,6 @@ public class PrivKeyGeneration {
 			a = Math.max(b, c);
 			b = Math.min(b, c);
 			gcd = a;
-			System.out.println(gcd);
 		}
 		
 		return gcd;

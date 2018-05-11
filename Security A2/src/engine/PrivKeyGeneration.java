@@ -21,6 +21,8 @@ public class PrivKeyGeneration {
 	// calculates the Greatest Common Divisor using Euclid's Algorithm
 	public static int gcdCalc(int p, int q)
 	{
+		// setting the min and max parameters in the right order otherwise while will loop infinitely
+		// a must be larger than b to calc difference for gcd in while loop
 		int a = Math.max(p, q);
 		int b = Math.min(p, q);
 		

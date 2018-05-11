@@ -3,10 +3,10 @@ package engine;
 public class PublicKeyGeneration {
 	
 	// TODO create configurable properties
-	int p;
-	int q;
-	int g;
-	int n;
+	private int p;
+	private int q;
+	private int g;
+	private int n;
 	
 	public PublicKeyGeneration(int p, int q, int g, int n)
 	{

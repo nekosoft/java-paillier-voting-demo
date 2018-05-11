@@ -13,6 +13,8 @@ public class PrivKeyGeneration {
 	int lambda;
 	int k;
 	int miu;
+	static int u;
+	
 	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);
@@ -55,6 +57,17 @@ public class PrivKeyGeneration {
 		lcm = lcmCalc(p, q, gcd);
 		return lcm;
 	}
+	
+	// L function used to compute k
+	public static int LCalc(int n)
+	{
+		int L;
+		L = (u - 1) / n;
+		return L;
+	}
+	
+	// compute k
+	
 	
 
 	

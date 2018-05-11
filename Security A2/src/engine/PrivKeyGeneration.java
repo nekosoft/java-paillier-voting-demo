@@ -14,7 +14,8 @@ public class PrivKeyGeneration {
 	int k;
 	int miu;
 	static int u;
-	
+	// commonly used properties
+	int n_sq = (int) Math.pow(n, 2);
 	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);

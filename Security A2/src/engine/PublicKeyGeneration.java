@@ -15,11 +15,47 @@ public class PublicKeyGeneration {
 		this.g = g;
 		this.n = n;
 	}
-
 	
+	// accessors
 	public int getP()
 	{
 		return p;
+	}
+	
+	public int getQ()
+	{
+		return q;
+	}
+	
+	public int getG()
+	{
+		return g;
+	}
+	
+	public int getN()
+	{
+		return n;
+	}
+	
+	// modifiers
+	public void setP(int p)
+	{
+		this.p = p;
+	}
+	
+	public void setQ(int q)
+	{
+		this.q = q;
+	}
+	
+	public void setG(int g)
+	{
+		this.g = g;
+	}
+	
+	public void setN(int n)
+	{
+		this.n = n;
 	}
 	
 }

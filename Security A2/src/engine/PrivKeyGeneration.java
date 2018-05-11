@@ -19,28 +19,42 @@ public class PrivKeyGeneration {
 	
 	
 	// calculates the Greatest Common Divisor using Euclid's Algorithm
-	public static int gcd(int p, int q)
+	public static int gcdCalc(int p, int q)
 	{
-		while (p !=q) 
+		int a = Math.max(p, q);
+		int b = Math.min(p, q);
+		
+		while (a !=b) 
 		{
 			int c;
-			c = p - q;;
-			p = Math.max(q, c);
-			q = Math.min(q, c);
-			gcd = p;
+			c = a - b;
+			a = Math.max(b, c);
+			b = Math.min(b, c);
+			gcd = a;
+			System.out.println(gcd);
 		}
 		
 		return gcd;
 	}
 	
 	// calculates Lowest Common Multiple using gcd
-	public static int lcm(int p, int q, int gcd)
+	public static int lcmCalc(int p, int q, int gcd)
 	{
 		lcm = (p * q) / gcd;
 		return lcm;
 	}
 	
-	// calculates Lambda parameter (NOT lambda function)
+	// calculates Lambda parameter (NOT a lambda function) which uses lcm
+	public static int lambdaCalc(int p, int q)
+	{
+		p -= 1;
+		q -= 1;
+//		System.out.printf("p: %d q: %d", p, q);
+		gcd = gcdCalc(p, q);
+		lcm = lcmCalc(p, q, gcd);
+		return lcm;
+	}
+	
 
 	
 

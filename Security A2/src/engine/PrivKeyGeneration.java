@@ -9,6 +9,11 @@ public class PrivKeyGeneration {
 	static int lcm;
 	static int gcd;
 	
+	// private key properties
+	int lambda;
+	int k;
+	int miu;
+	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);
 	
@@ -35,6 +40,7 @@ public class PrivKeyGeneration {
 		return lcm;
 	}
 	
+	// calculates Lambda parameter (NOT lambda function)
 
 	
 

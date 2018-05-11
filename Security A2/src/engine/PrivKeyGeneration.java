@@ -30,7 +30,7 @@ public class PrivKeyGeneration {
 	
 	public static int lcm(int p, int q, int gcd)
 	{
-		lcm = 
+		lcm = (p * q) / gcd;
 		return lcm;
 	}
 	

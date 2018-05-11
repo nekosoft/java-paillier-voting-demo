@@ -28,6 +28,7 @@ public class PrivKeyGeneration {
 		return gcd;
 	}
 	
+	// calculates Lowest Common Multiple using gcd
 	public static int lcm(int p, int q, int gcd)
 	{
 		lcm = (p * q) / gcd;

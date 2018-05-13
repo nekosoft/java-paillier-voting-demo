@@ -78,8 +78,9 @@ public class PaillierCalculations {
 		BigInteger k;
 		BigInteger n_sq = n.pow(2);
 		k = g.modPow(calculateLambda(p, q), n_sq);
-		System.out.printf("Calculate K: \nN Squared: %d K Mod Pow: %d", n_sq, k);
+		System.out.printf("Calculate k: \nN Squared: %d K Mod Pow: %d\n", n_sq, k);
 		k = functionL(k, n);
+		System.out.printf("L of k: \n", k);
 		return k;
 	}
 

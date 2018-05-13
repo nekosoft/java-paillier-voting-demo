@@ -50,13 +50,15 @@ public class PaillierCalculations {
 	}
 	
 	// calculates Lambda parameter (NOT a lambda function) which uses lcm
-	public static BigInteger lambdaCalc(BigInteger p, BigInteger q)
+	public static BigInteger calculateLambda(BigInteger p, BigInteger q)
 	{
-		p -= 1;
-		q -= 1;
+		BigInteger one;
+		one = new BigInteger("1");
+		p = p.subtract(one);
+		q = q.subtract(one);
 //		System.out.printf("p: %d q: %d", p, q);
-		gcd = gcdCalc(p, q);
-		lcm = lcmCalc(p, q, gcd);
+		gcd = calculateGCD(p, q);
+		lcm = calculateLCM(p, q, gcd);
 		return lcm;
 	}
 	

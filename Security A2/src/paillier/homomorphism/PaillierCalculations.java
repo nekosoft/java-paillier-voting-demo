@@ -18,27 +18,25 @@ public class PaillierCalculations {
 	BigInteger k;
 	BigInteger miu;
 	static BigInteger u;
-	// commonly used properties
-	BigInteger n_sq = (int) Math.pow(n, 2);
 	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);
 	
 	
 	// calculates the Greatest Common Divisor using Euclid's Algorithm
-	public static BigInteger gcdCalc(BigInteger p, BigInteger q)
+	public static BigInteger calculateGCD(BigInteger p, BigInteger q)
 	{
-		// setting the min and max parameters in the right order otherwise while will loop infinitely
+		// setting the min and max parameters in the right order otherwise while loops infinitely
 		// a must be larger than b to calc difference for gcd in while loop
-		BigInteger a = Math.max(p, q);
-		BigInteger b = Math.min(p, q);
+		BigInteger a = p.max(q);
+		BigInteger b = p.min(q);
 		
 		while (a !=b) 
 		{
 			BigInteger c;
-			c = a - b;
-			a = Math.max(b, c);
-			b = Math.min(b, c);
+			c = a.subtract(b);
+			a = b.max(c);
+			b = b.min(c);
 			gcd = a;
 		}
 		

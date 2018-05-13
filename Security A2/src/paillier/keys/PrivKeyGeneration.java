@@ -1,4 +1,4 @@
-package engine;
+package paillier.keys;
 
 public class PrivKeyGeneration {
 	

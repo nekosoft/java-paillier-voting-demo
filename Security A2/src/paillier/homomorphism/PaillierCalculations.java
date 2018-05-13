@@ -64,7 +64,7 @@ public class PaillierCalculations {
 	}
 	
 	// L function used to compute k
-	public static BigInteger calculateL(BigInteger n)
+	public static BigInteger functionL(BigInteger u, BigInteger n)
 	{
 		BigInteger L;
 		L = (u.subtract(one)).divide(n);
@@ -73,9 +73,13 @@ public class PaillierCalculations {
 	}
 	
 	// compute k
-	public static BigInteger calculateK()
+	public static BigInteger calculateK(BigInteger n, BigInteger g, BigInteger p, BigInteger q)
 	{
 		BigInteger k;
+		BigInteger n_sq = n.pow(2);
+		k = g.modPow(calculateLambda(p, q), n_sq);
+		System.out.printf("Calculate K: \nN Squared: %d K Mod Pow: %d", n_sq, k);
+		k = functionL(k, n);
 		return k;
 	}
 

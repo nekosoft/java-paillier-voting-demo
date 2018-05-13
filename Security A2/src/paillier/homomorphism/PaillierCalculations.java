@@ -43,9 +43,9 @@ public class PaillierCalculations {
 	}
 	
 	// calculates Lowest Common Multiple using gcd
-	public static BigInteger lcmCalc(BigInteger p, BigInteger q, BigInteger gcd)
+	public static BigInteger calculateLCM(BigInteger p, BigInteger q, BigInteger gcd)
 	{
-		lcm = (p * q) / gcd;
+		lcm = (p.multiply(q)).divide(gcd);
 		return lcm;
 	}
 	

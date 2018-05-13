@@ -92,5 +92,19 @@ public class PaillierCalculations {
 		System.out.printf("\u03bc: \n", miu);
 		return miu;
 	}
+	
+	// here comes the actual Paillier encryption using Public Key
+	// formula to encrypt each vote is: c = g^m * r^n mod n^2
+	// where c is the ciphertext, m is the message (vote) and r is a random number chosen by the voter
+	public static BigInteger encrypt(BigInteger g, BigInteger r, BigInteger n, int nExponent, int m)
+	{
+		BigInteger CT;
+		BigInteger n_sq = n.pow(2);
+		// as pow(a) requires an int, have passed in n twice until better fix
+		CT = ((g.pow(m)).multiply(r.pow(nExponent))).mod(n_sq);
+		System.out.printf("Encrypted Message: \n", CT);
+		return CT;
+	}
+	
 
 }

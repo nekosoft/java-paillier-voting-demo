@@ -19,6 +19,7 @@ public class VoteEngine {
 		BigInteger g = new BigInteger("5724");
 		BigInteger p = new BigInteger("59");
 		BigInteger q = new BigInteger("97");
+		BigInteger n_sq = n.pow(2);
 		
 		// candidate assignments
 		int candidateA = 8;
@@ -40,7 +41,7 @@ public class VoteEngine {
 		kTest = PaillierCalculations.calculateK(n, g, p, q);
 		miuTest = PaillierCalculations.calculateMiu(kTest, n);
 		
-		// encrypted vote test, to be put in array
+		// TODO encrypted vote test, to be put in array
 		voteTest1 = PaillierCalculations.encrypt(g, r1, n, 5723, candidateA);
 		BigInteger voteTest2 = PaillierCalculations.encrypt(g, r2, n, 5723, candidateB);
 		BigInteger voteTest3 = PaillierCalculations.encrypt(g, r3, n, 5723, candidateB);
@@ -59,6 +60,16 @@ public class VoteEngine {
 		System.out.printf("Vote 5 Encryption: %d\n", voteTest5);
 		System.out.printf("Vote 6 Encryption: %d\n", voteTest6);
 		System.out.printf("Vote 7 Encryption: %d\n", voteTest7);
+		
+		// multiply set of encrypted votes
+		BigInteger multiplyResult;
+		multiplyResult = (((((voteTest1.multiply(voteTest2)).multiply(voteTest3)).multiply(voteTest4)).multiply(voteTest5)).multiply(voteTest6)).multiply(voteTest7);
+		BigInteger addition = multiplyResult.mod(n_sq);
+		System.out.printf("Multiply Result: %d\nAdditive Property: %d\n", multiplyResult, addition);
+		
+		// decrypt result
+		BigInteger decrypted = PaillierCalculations.decrypt(n, g, p, q, addition);
+		System.out.printf("Decrypted votes: %d\n", decrypted);
 	}
 
 }

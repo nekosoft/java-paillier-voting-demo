@@ -1,14 +1,16 @@
-package engine;
+package paillier.keys;
+
+import java.math.BigInteger;
 
 public class PublicKeyGeneration {
 	
 	// TODO create configurable properties
-	private int p;
-	private int q;
-	private int g;
-	private int n;
+	private BigInteger p;
+	private BigInteger q;
+	private BigInteger g;
+	private BigInteger n;
 	
-	public PublicKeyGeneration(int p, int q, int g, int n)
+	public PublicKeyGeneration(BigInteger p, BigInteger q, BigInteger g, BigInteger n)
 	{
 		this.p = p;
 		this.q = q;
@@ -17,43 +19,43 @@ public class PublicKeyGeneration {
 	}
 	
 	// accessors
-	public int getP()
+	public BigInteger getP()
 	{
 		return p;
 	}
 	
-	public int getQ()
+	public BigInteger getQ()
 	{
 		return q;
 	}
 	
-	public int getG()
+	public BigInteger getG()
 	{
 		return g;
 	}
 	
-	public int getN()
+	public BigInteger getN()
 	{
 		return n;
 	}
 	
 	// modifiers
-	public void setP(int p)
+	public void setP(BigInteger p)
 	{
 		this.p = p;
 	}
 	
-	public void setQ(int q)
+	public void setQ(BigInteger q)
 	{
 		this.q = q;
 	}
 	
-	public void setG(int g)
+	public void setG(BigInteger g)
 	{
 		this.g = g;
 	}
 	
-	public void setN(int n)
+	public void setN(BigInteger n)
 	{
 		this.n = n;
 	}

@@ -37,10 +37,9 @@ public class PaillierCalculations {
 			c = a.subtract(b);
 			a = b.max(c);
 			b = b.min(c);
-			gcd = a;
 		}
 		
-		return gcd;
+		return a;
 	}
 	
 	// calculates Lowest Common Multiple using gcd

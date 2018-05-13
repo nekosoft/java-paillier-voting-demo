@@ -83,5 +83,14 @@ public class PaillierCalculations {
 		System.out.printf("L of k: \n", k);
 		return k;
 	}
+	
+	// calculate miu
+	public static BigInteger calculateMiu(BigInteger k, BigInteger n)
+	{
+		BigInteger miu;
+		miu = k.modInverse(n);
+		System.out.printf("\u03bc: \n", miu);
+		return miu;
+	}
 
 }

@@ -19,6 +19,9 @@ public class PaillierCalculations {
 	BigInteger miu;
 	static BigInteger u;
 	
+	static BigInteger one = new BigInteger("1");
+//	one = new BigInteger("1");
+	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);
 	
@@ -52,8 +55,6 @@ public class PaillierCalculations {
 	// calculates Lambda parameter (NOT a lambda function) which uses lcm
 	public static BigInteger calculateLambda(BigInteger p, BigInteger q)
 	{
-		BigInteger one;
-		one = new BigInteger("1");
 		p = p.subtract(one);
 		q = q.subtract(one);
 //		System.out.printf("p: %d q: %d", p, q);
@@ -65,8 +66,9 @@ public class PaillierCalculations {
 	// L function used to compute k
 	public static BigInteger LCalc(BigInteger n)
 	{
-		int L;
-		L = (u - 1) / n;
+		BigInteger L;
+		L = (u.subtract(one)).divide(n);
+//		L = (u - 1) / n;
 		return L;
 	}
 	

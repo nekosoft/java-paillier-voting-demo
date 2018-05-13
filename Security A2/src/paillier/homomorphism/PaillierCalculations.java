@@ -106,5 +106,14 @@ public class PaillierCalculations {
 		return CT;
 	}
 	
+	public static BigInteger decrypt(BigInteger n, BigInteger g, BigInteger p, BigInteger q, BigInteger c)
+	{
+		BigInteger decrypted;
+		BigInteger n_sq = n.pow(2);
+		decrypted = c.modPow(calculateLambda(p, q), n_sq);
+		decrypted = functionL(decrypted, n);
+		return decrypted;
+	}
+	
 
 }

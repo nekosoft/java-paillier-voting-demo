@@ -64,7 +64,7 @@ public class PaillierCalculations {
 	}
 	
 	// L function used to compute k
-	public static BigInteger LCalc(BigInteger n)
+	public static BigInteger calculateL(BigInteger n)
 	{
 		BigInteger L;
 		L = (u.subtract(one)).divide(n);
@@ -73,5 +73,10 @@ public class PaillierCalculations {
 	}
 	
 	// compute k
+	public static BigInteger calculateK()
+	{
+		BigInteger k;
+		return k;
+	}
 
 }

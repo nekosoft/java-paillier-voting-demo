@@ -78,9 +78,9 @@ public class PaillierCalculations {
 		BigInteger k;
 		BigInteger n_sq = n.pow(2);
 		k = g.modPow(calculateLambda(p, q), n_sq);
-		System.out.printf("Calculate k: \nN Squared: %d K Mod Pow: %d\n", n_sq, k);
+		System.out.printf("Calculate k-- \nN Squared: %d K Mod Pow: %d\n", n_sq, k);
 		k = functionL(k, n);
-		System.out.printf("L of k: \n", k);
+		System.out.printf("L of k: %d\n", k);
 		return k;
 	}
 	
@@ -89,7 +89,7 @@ public class PaillierCalculations {
 	{
 		BigInteger miu;
 		miu = k.modInverse(n);
-		System.out.printf("\u03bc: \n", miu);
+		System.out.printf("\u03bc: %d\n", miu);
 		return miu;
 	}
 	
@@ -108,11 +108,34 @@ public class PaillierCalculations {
 	
 	public static BigInteger decrypt(BigInteger n, BigInteger g, BigInteger p, BigInteger q, BigInteger c)
 	{
-		BigInteger decrypted;
+		BigInteger m;
+		BigInteger k = calculateK(n, g, p, q);
+		BigInteger miu = calculateMiu(k, n);
 		BigInteger n_sq = n.pow(2);
-		decrypted = c.modPow(calculateLambda(p, q), n_sq);
-		decrypted = functionL(decrypted, n);
-		return decrypted;
+		int lambda = 2784;
+		
+//		// c^lambda mod n^2
+//		m = c.modPow(calculateLambda(p, q), n_sq);
+//		System.out.printf("Decrypt lambda: %d\n", m);
+//		
+//		// L of m
+//		m = functionL(m, n);
+//		System.out.printf("L of m: %d\n", m);
+//		
+//		m = m.multiply(miu);
+//		m = m.mod(n);
+//		return m;
+		
+		
+		// TEST //
+		m = c.pow(lambda);
+		m = m.mod(n_sq);
+		m = functionL(m, n);
+		m = m.multiply(miu);
+		m = m.mod(n);
+		
+		return m;
+		
 	}
 	
 

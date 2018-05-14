@@ -131,19 +131,8 @@ public class PaillierCalculations {
 		System.out.printf("L of m: %d\n", m);
 		
 		m = (m.multiply(miu)).mod(n);
-//		m = m.mod(n);
 		return m;
-		
-		
-//		// TEST //
-//		m = (c.pow(lambda)).mod(n_sq);
-////		m = m.mod(n_sq);
-//		System.out.printf("u: %d\n", m);
-//		m = functionL(m, n);
-//		m = m.multiply(miu);
-//		m = m.mod(n);
-//		System.out.printf("Decrypted in method: %d\n", m);
-//		return m;
+
 		
 	}
 	

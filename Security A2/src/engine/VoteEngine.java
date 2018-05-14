@@ -12,7 +12,6 @@ public class VoteEngine {
 //		System.out.println("This is the Greek letter for miu: \u03bc");
 		
 		BigInteger gcdTest;
-		BigInteger lcmTest;
 		BigInteger lambdaTest, kTest, miuTest;
 		BigInteger voteTest1;
 		
@@ -26,9 +25,9 @@ public class VoteEngine {
 				+ "p = %d  q = %d  g = %d  n = p * q = %d\n"
 				+ "(n, g) = (%d, %d)\n", p, q, g, n, n, g);
 		
-		// candidate assignments
-		int candidateA = 8;
-		int candidateB = 1;
+		// vote assignments
+		int yes = 8;
+		int no = 1;
 		
 		// voters random numbers
 		BigInteger r1 = new BigInteger("90");
@@ -41,7 +40,6 @@ public class VoteEngine {
 		
 		
 		gcdTest = PaillierCalculations.calculateGCD(p, q);
-		lcmTest = PaillierCalculations.calculateLCM(p, q, gcdTest);
 		lambdaTest = PaillierCalculations.calculateLambda(p, q);
 		kTest = PaillierCalculations.calculateK(n, g, p, q);
 		miuTest = PaillierCalculations.calculateMiu(kTest, n);
@@ -51,13 +49,13 @@ public class VoteEngine {
 				+ "(\u03bb, \u03bc) = (%d, %d)\n", lambdaTest, kTest, miuTest,lambdaTest, miuTest);
 		
 		// TODO encrypted vote test, to be put in array
-		voteTest1 = PaillierCalculations.encrypt(g, r1, n, 5723, candidateA);
-		BigInteger voteTest2 = PaillierCalculations.encrypt(g, r2, n, 5723, candidateB);
-		BigInteger voteTest3 = PaillierCalculations.encrypt(g, r3, n, 5723, candidateB);
-		BigInteger voteTest4 = PaillierCalculations.encrypt(g, r4, n, 5723, candidateA);
-		BigInteger voteTest5 = PaillierCalculations.encrypt(g, r5, n, 5723, candidateA);
-		BigInteger voteTest6 = PaillierCalculations.encrypt(g, r6, n, 5723, candidateB);
-		BigInteger voteTest7 = PaillierCalculations.encrypt(g, r7, n, 5723, candidateA);
+		voteTest1 = PaillierCalculations.encrypt(g, r1, n, 5723, yes);
+		BigInteger voteTest2 = PaillierCalculations.encrypt(g, r2, n, 5723, no);
+		BigInteger voteTest3 = PaillierCalculations.encrypt(g, r3, n, 5723, no);
+		BigInteger voteTest4 = PaillierCalculations.encrypt(g, r4, n, 5723, yes);
+		BigInteger voteTest5 = PaillierCalculations.encrypt(g, r5, n, 5723, yes);
+		BigInteger voteTest6 = PaillierCalculations.encrypt(g, r6, n, 5723, no);
+		BigInteger voteTest7 = PaillierCalculations.encrypt(g, r7, n, 5723, yes);
 		
 
 		System.out.printf("Vote 1 Encryption: %d\n", voteTest1);

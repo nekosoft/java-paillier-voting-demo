@@ -7,6 +7,7 @@ public class VoteEngine {
 
 	public static void main(String[] args) {
 		// TODO Add log output
+		// TODO user input for parameters
 		System.out.println("This is the Greek letter for lambda: \u03bb");
 		System.out.println("This is the Greek letter for miu: \u03bc");
 		

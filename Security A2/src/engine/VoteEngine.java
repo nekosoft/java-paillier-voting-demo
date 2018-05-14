@@ -6,7 +6,7 @@ import java.math.BigInteger;
 public class VoteEngine {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Add log output
 		System.out.println("This is the Greek letter for lambda: \u03bb");
 		System.out.println("This is the Greek letter for miu: \u03bc");
 		
@@ -26,13 +26,13 @@ public class VoteEngine {
 		int candidateB = 1;
 		
 		// voters random numbers
-		BigInteger r1 = new BigInteger("91");
-		BigInteger r2 = new BigInteger("92");
-		BigInteger r3 = new BigInteger("93");
-		BigInteger r4 = new BigInteger("94");
-		BigInteger r5 = new BigInteger("95");
-		BigInteger r6 = new BigInteger("96");
-		BigInteger r7 = new BigInteger("97");
+		BigInteger r1 = new BigInteger("90");
+		BigInteger r2 = new BigInteger("91");
+		BigInteger r3 = new BigInteger("92");
+		BigInteger r4 = new BigInteger("93");
+		BigInteger r5 = new BigInteger("94");
+		BigInteger r6 = new BigInteger("95");
+		BigInteger r7 = new BigInteger("96");
 		
 		
 		gcdTest = PaillierCalculations.calculateGCD(p, q);
@@ -63,12 +63,15 @@ public class VoteEngine {
 		
 		// multiply set of encrypted votes
 		BigInteger multiplyResult;
+		// TODO loop to multiply
 		multiplyResult = (((((voteTest1.multiply(voteTest2)).multiply(voteTest3)).multiply(voteTest4)).multiply(voteTest5)).multiply(voteTest6)).multiply(voteTest7);
+		multiplyResult = multiplyResult.mod(n_sq);
+		
 		BigInteger addition = multiplyResult.mod(n_sq);
-		System.out.printf("Multiply Result: %d\nAdditive Property: %d\n", multiplyResult, addition);
+		System.out.printf("Multiply Result: %d\nAdditive Property (THIS IS WRONG?): %d\n", multiplyResult, addition);
 		
 		// decrypt result
-		BigInteger decrypted = PaillierCalculations.decrypt(n, g, p, q, addition);
+		BigInteger decrypted = PaillierCalculations.decrypt(n, g, p, q, multiplyResult);
 		System.out.printf("Decrypted votes: %d\n", decrypted);
 	}
 

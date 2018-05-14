@@ -67,13 +67,17 @@ public class VoteEngine {
 		// TODO loop to multiply
 		multiplyResult = (((((voteTest1.multiply(voteTest2)).multiply(voteTest3)).multiply(voteTest4)).multiply(voteTest5)).multiply(voteTest6)).multiply(voteTest7);
 		multiplyResult = multiplyResult.mod(n_sq);
-		
-		BigInteger addition = multiplyResult.mod(n_sq);
-		System.out.printf("Multiply Result: %d\nAdditive Property (THIS IS WRONG?): %d\n", multiplyResult, addition);
+
+		System.out.printf("Homomorphic Addition - Encrypted result: %d\n", multiplyResult);
 		
 		// decrypt result
 		BigInteger decrypted = PaillierCalculations.decrypt(n, g, p, q, multiplyResult);
 		System.out.printf("Decrypted votes: %d\n", decrypted);
+		
+		// TODO binary conversions to represent votes and comments explaining system
+		System.out.printf("Binary: %s\n", decrypted.toString(2));
+	  
+		
 	}
 
 }

@@ -20,7 +20,6 @@ public class PaillierCalculations {
 	static BigInteger u;
 	
 	static BigInteger one = new BigInteger("1");
-//	one = new BigInteger("1");
 	
 	// need public key parameters to generate private key
 	PublicKeyGeneration publicKey = new PublicKeyGeneration(p, q, g, n);
@@ -53,6 +52,7 @@ public class PaillierCalculations {
 	}
 	
 	// calculates Lambda parameter (NOT a lambda function) which uses lcm
+	// FORMULA: λ = lcm(p-1, q-1)
 	public static BigInteger calculateLambda(BigInteger p, BigInteger q)
 	{
 		p = p.subtract(one);
@@ -63,16 +63,22 @@ public class PaillierCalculations {
 		return lcm;
 	}
 	
-	// L function used to compute k
+	// L function
+	// FORMULA: L(u) = (u - 1)/n
 	public static BigInteger functionL(BigInteger u, BigInteger n)
 	{
 		BigInteger L;
-		L = (u.subtract(one)).divide(n);
+//		L = (u.subtract(one)).divide(n);
+		L = u.subtract(one);
+		System.out.printf("u - 1: %d\n", L);
+		L = u.divide(n);
+		System.out.printf("Divide n: %d  |  n: %d\n", L, n);
 //		L = (u - 1) / n;
 		return L;
 	}
 	
 	// compute k
+	// FORMULA: k = L(g^λ mod n^2)
 	public static BigInteger calculateK(BigInteger n, BigInteger g, BigInteger p, BigInteger q)
 	{
 		BigInteger k;
@@ -85,6 +91,7 @@ public class PaillierCalculations {
 	}
 	
 	// calculate miu
+	// FORMULA: μ = k^-1 mod n = 2784^-1 mod 5723
 	public static BigInteger calculateMiu(BigInteger k, BigInteger n)
 	{
 		BigInteger miu;
@@ -93,19 +100,28 @@ public class PaillierCalculations {
 		return miu;
 	}
 	
-	// here comes the actual Paillier encryption using Public Key
-	// formula to encrypt each vote is: c = g^m * r^n mod n^2
+	// here comes the actual Paillier encryption using Public Key //
+	// FORMULA: c = g^m * r^n mod n^2
 	// where c is the ciphertext, m is the message (vote) and r is a random number chosen by the voter
 	public static BigInteger encrypt(BigInteger g, BigInteger r, BigInteger n, int nExponent, int m)
 	{
+//		BigInteger a, b, c;
 		BigInteger CT;
 		BigInteger n_sq = n.pow(2);
 		// as pow(a) requires an int, have passed in n twice until better fix
 		CT = ((g.pow(m)).multiply(r.pow(nExponent))).mod(n_sq);
+		
+		// breaking down above code
+//		a = g.pow(m);
+//		b = r.pow(nExponent);
+//		c = a.multiply(b);
+//		CT = c.mod(n_sq);
+		
 		System.out.printf("Encrypted Message: \n", CT);
 		return CT;
 	}
 	
+	// FORMULA: L(c^lambda mod n^2) * miu mod n
 	public static BigInteger decrypt(BigInteger n, BigInteger g, BigInteger p, BigInteger q, BigInteger c)
 	{
 		BigInteger m;
@@ -128,12 +144,13 @@ public class PaillierCalculations {
 		
 		
 		// TEST //
-		m = c.pow(lambda);
-		m = m.mod(n_sq);
+		m = (c.pow(lambda)).mod(n_sq);
+//		m = m.mod(n_sq);
+		System.out.printf("u: %d\n", m);
 		m = functionL(m, n);
 		m = m.multiply(miu);
 		m = m.mod(n);
-		
+		System.out.printf("Decrypted in method: %d\n", m);
 		return m;
 		
 	}

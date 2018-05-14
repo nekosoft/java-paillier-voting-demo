@@ -8,8 +8,8 @@ public class VoteEngine {
 	public static void main(String[] args) {
 		// TODO Add log output
 		// TODO user input for parameters
-		System.out.println("This is the Greek letter for lambda: \u03bb");
-		System.out.println("This is the Greek letter for miu: \u03bc");
+//		System.out.println("This is the Greek letter for lambda: \u03bb");
+//		System.out.println("This is the Greek letter for miu: \u03bc");
 		
 		BigInteger gcdTest;
 		BigInteger lcmTest;
@@ -21,6 +21,10 @@ public class VoteEngine {
 		BigInteger p = new BigInteger("59");
 		BigInteger q = new BigInteger("97");
 		BigInteger n_sq = n.pow(2);
+		
+		System.out.printf("The following Public Key has been provided:\n"
+				+ "p = %d  q = %d  g = %d  n = p * q = %d\n"
+				+ "(n, g) = (%d, %d)\n", p, q, g, n, n, g);
 		
 		// candidate assignments
 		int candidateA = 8;
@@ -42,6 +46,10 @@ public class VoteEngine {
 		kTest = PaillierCalculations.calculateK(n, g, p, q);
 		miuTest = PaillierCalculations.calculateMiu(kTest, n);
 		
+		System.out.printf("The following Private Key has been calculated:\n"
+				+ "\u03bb = %d  k = %d  \u03bc = %d\n"
+				+ "(\u03bb, \u03bc) = (%d, %d)\n", lambdaTest, kTest, miuTest,lambdaTest, miuTest);
+		
 		// TODO encrypted vote test, to be put in array
 		voteTest1 = PaillierCalculations.encrypt(g, r1, n, 5723, candidateA);
 		BigInteger voteTest2 = PaillierCalculations.encrypt(g, r2, n, 5723, candidateB);
@@ -51,9 +59,7 @@ public class VoteEngine {
 		BigInteger voteTest6 = PaillierCalculations.encrypt(g, r6, n, 5723, candidateB);
 		BigInteger voteTest7 = PaillierCalculations.encrypt(g, r7, n, 5723, candidateA);
 		
-		System.out.printf("gcd: %d\n", gcdTest);
-		System.out.printf("lcm: %d\n", lcmTest);
-		System.out.printf("\u03bb: %d k: %d\n\u03bc: %d\n", lambdaTest, kTest, miuTest);
+
 		System.out.printf("Vote 1 Encryption: %d\n", voteTest1);
 		System.out.printf("Vote 2 Encryption: %d\n", voteTest2);
 		System.out.printf("Vote 3 Encryption: %d\n", voteTest3);
@@ -75,7 +81,7 @@ public class VoteEngine {
 		System.out.printf("Decrypted votes: %d\n", decrypted);
 		
 		// TODO binary conversions to represent votes and comments explaining system
-		System.out.printf("Binary: %s\n", decrypted.toString(2));
+		System.out.printf("Binary Result: %s\n", decrypted.toString(2));
 	  
 		
 	}

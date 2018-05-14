@@ -103,21 +103,14 @@ public class PaillierCalculations {
 	// here comes the actual Paillier encryption using Public Key //
 	// FORMULA: c = g^m * r^n mod n^2
 	// where c is the ciphertext, m is the message (vote) and r is a random number chosen by the voter
+	// as pow(a) requires an int, have passed in n twice - one as BigInteger and one as int - until better fix
 	public static BigInteger encrypt(BigInteger g, BigInteger r, BigInteger n, int nExponent, int m)
 	{
-//		BigInteger a, b, c;
 		BigInteger CT;
 		BigInteger n_sq = n.pow(2);
-		// as pow(a) requires an int, have passed in n twice until better fix
 		CT = ((g.pow(m)).multiply(r.pow(nExponent))).mod(n_sq);
-		
-		// breaking down above code
-//		a = g.pow(m);
-//		b = r.pow(nExponent);
-//		c = a.multiply(b);
-//		CT = c.mod(n_sq);
-		
-		System.out.printf("Encrypted Message: \n", CT);
+
+		System.out.printf("Encrypted Message: %d\n", CT);
 		return CT;
 	}
 	
@@ -128,30 +121,29 @@ public class PaillierCalculations {
 		BigInteger k = calculateK(n, g, p, q);
 		BigInteger miu = calculateMiu(k, n);
 		BigInteger n_sq = n.pow(2);
-		int lambda = 2784;
 		
-//		// c^lambda mod n^2
-//		m = c.modPow(calculateLambda(p, q), n_sq);
-//		System.out.printf("Decrypt lambda: %d\n", m);
-//		
-//		// L of m
+		// c^lambda mod n^2
+		m = c.modPow(calculateLambda(p, q), n_sq);
+		System.out.printf("Decrypt lambda: %d\n", m);
+		
+		// L of m
+		m = functionL(m, n);
+		System.out.printf("L of m: %d\n", m);
+		
+		m = (m.multiply(miu)).mod(n);
+//		m = m.mod(n);
+		return m;
+		
+		
+//		// TEST //
+//		m = (c.pow(lambda)).mod(n_sq);
+////		m = m.mod(n_sq);
+//		System.out.printf("u: %d\n", m);
 //		m = functionL(m, n);
-//		System.out.printf("L of m: %d\n", m);
-//		
 //		m = m.multiply(miu);
 //		m = m.mod(n);
+//		System.out.printf("Decrypted in method: %d\n", m);
 //		return m;
-		
-		
-		// TEST //
-		m = (c.pow(lambda)).mod(n_sq);
-//		m = m.mod(n_sq);
-		System.out.printf("u: %d\n", m);
-		m = functionL(m, n);
-		m = m.multiply(miu);
-		m = m.mod(n);
-		System.out.printf("Decrypted in method: %d\n", m);
-		return m;
 		
 	}
 	
